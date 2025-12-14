@@ -1,16 +1,165 @@
-# React + Vite
+# 🍬 Sweet Shop Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack Sweet Shop Management System built using modern web technologies.  
+This project demonstrates backend API development, frontend integration, authentication, inventory management, testing (TDD), and responsible AI usage.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📌 Project Overview
 
-## React Compiler
+The Sweet Shop Management System allows users to:
+- Register and log in securely
+- View available sweets
+- Search sweets by name, category, and price range
+- Purchase sweets (inventory reduces automatically)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Admin users can:
+- Add new sweets
+- Update sweet details
+- Delete sweets
+- Restock inventory
 
-## Expanding the ESLint configuration
+The project follows **Test-Driven Development (TDD)** and clean coding practices.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🛠️ Tech Stack
+
+### Backend
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JWT Authentication
+- Jest (Testing)
+
+### Frontend
+- React.js
+- Vite
+- Axios
+- CSS / Tailwind / Bootstrap 
+
+### Tools
+- Git & GitHub
+- Postman
+- AI Tools (see AI Usage section)
+
+---
+
+## 🔐 Authentication
+
+- User Registration
+- User Login
+- JWT-based authentication
+- Protected routes for sweets and inventory
+- Role-based access (Admin & User)
+
+---
+
+## 📦 Backend API Endpoints
+
+### Auth
+| Method | Endpoint | Description |
+|------|--------|------------|
+| POST | `/api/auth/register` | Register new user |
+| POST | `/api/auth/login` | Login user |
+
+### Sweets
+| Method | Endpoint | Description |
+|------|--------|------------|
+| POST | `/api/sweets` | Add new sweet (Admin) |
+| GET | `/api/sweets` | Get all sweets |
+| GET | `/api/sweets/search` | Search sweets |
+| PUT | `/api/sweets/:id` | Update sweet |
+| DELETE | `/api/sweets/:id` | Delete sweet (Admin) |
+
+### Inventory
+| Method | Endpoint | Description |
+|------|--------|------------|
+| POST | `/api/sweets/:id/purchase` | Purchase sweet |
+| POST | `/api/sweets/:id/restock` | Restock sweet (Admin) |
+
+---
+
+## 🎨 Frontend Features
+
+- User Registration & Login
+- Sweet listing dashboard
+- Search and filter sweets
+- Purchase button (disabled if stock = 0)
+- Admin panel for managing sweets
+- Responsive card-based UI
+
+---
+
+## 🧪 Testing (TDD)
+
+- Tests written before implementation
+- Jest used for backend testing
+- Covers:
+  - Authentication
+  - Sweet CRUD operations
+  - Search functionality
+  - Purchase & restock logic
+
+### Run Tests
+```bash
+npm test
+
+🚀 Setup Instructions
+1️⃣ Clone Repository
+git clone https://github.com/your-username/sweetshop.git
+cd sweetshop
+
+2️⃣ Backend Setup
+cd backend
+npm install
+
+
+Create .env file:
+
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_secret_key
+
+
+Run backend:
+
+npm start / or /
+npm run dev
+
+
+3️⃣ Frontend Setup
+cd frontend
+npm install
+npm run dev
+
+
+Frontend runs on:
+
+http://localhost:5173
+
+
+
+## 📸 Screenshots
+
+### 🔐 Login Page
+![Login Page](./screenshots/login.png)
+
+### 📝 Register Page
+![Register Page](./screenshots/register.png)
+
+### 🏠 Dashboard
+![Dashboard](./screenshots/dashboard.png)
+
+### 👑 Admin Panel
+![Admin Panel](./screenshots/Admin.png)
+
+### ➕ Add Sweet (Admin)
+![Add Sweet Admin](./screenshots/add-sweet-(Admin).png)
+
+### 🔍 Search (User)
+![Search User](./screenshots/search-user.png)
+
+### 🛒 Search & Purchase
+![Search & Purchase](./screenshots/search-purchase.png)
