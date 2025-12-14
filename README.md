@@ -1,7 +1,7 @@
 # 🍬 Sweet Shop Management System
 
-A full-stack Sweet Shop Management System built using modern web technologies.  
-This project demonstrates backend API development, frontend integration, authentication, inventory management, testing (TDD), and responsible AI usage.
+A full-stack **Sweet Shop Management System** built using modern web technologies.  
+This project demonstrates backend API development, frontend integration, authentication, inventory management, **Test-Driven Development (TDD)**, and responsible AI usage.
 
 ---
 
@@ -13,7 +13,7 @@ The Sweet Shop Management System allows users to:
 - Search sweets by name, category, and price range
 - Purchase sweets (inventory reduces automatically)
 
-Admin users can:
+**Admin users** can:
 - Add new sweets
 - Update sweet details
 - Delete sweets
@@ -37,7 +37,7 @@ The project follows **Test-Driven Development (TDD)** and clean coding practices
 - React.js
 - Vite
 - Axios
-- CSS / Tailwind / Bootstrap 
+- CSS / Tailwind / Bootstrap
 
 ### Tools
 - Git & GitHub
@@ -105,43 +105,54 @@ The project follows **Test-Driven Development (TDD)** and clean coding practices
 ### Run Tests
 ```bash
 npm test
+```
 
-🚀 Setup Instructions
-1️⃣ Clone Repository
+---
+
+## 🚀 Setup Instructions
+
+### 1️⃣ Clone Repository
+```bash
 git clone https://github.com/your-username/sweetshop.git
 cd sweetshop
+```
 
-2️⃣ Backend Setup
+### 2️⃣ Backend Setup
+```bash
 cd backend
 npm install
+```
 
-
-Create .env file:
-
+Create a `.env` file:
+```env
 PORT=5000
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_secret_key
-
+```
 
 Run backend:
-
-npm start / or /
+```bash
+npm start
+# or
 npm run dev
+```
 
+Admin username: admin@sweet.com
+pass:admin123
 
-3️⃣ Frontend Setup
+### 3️⃣ Frontend Setup
+```bash
 cd frontend
 npm install
 npm run dev
-
+```
 
 Frontend runs on:
-
+```
 http://localhost:5173
+```
 
-
-
-## 📸 Screenshots
+---
 
 ## 📸 Screenshots
 
@@ -158,10 +169,45 @@ http://localhost:5173
 ![Admin Panel](./screenshots/Admin.png)
 
 ### ➕ Add Sweet (Admin)
-![Add Sweet Admin](./screenshots/add-sweet-admin.png)
+![Add Sweet Admin](./screenshots/Add%20Sweet%20(Admin).png)
 
 ### 🔍 Search (User)
 ![Search User](./screenshots/search-user.png)
 
 ### 🛒 Search & Purchase
 ![Search & Purchase](./screenshots/search-purchase.png)
+
+---
+
+## 🤖 My AI Usage
+
+### AI Tools Used
+- ChatGPT
+
+### How I Used AI
+- Generating boilerplate code for APIs
+- Writing and improving Jest test cases
+- Debugging errors
+- Improving UI structure and layout
+- Understanding best practices
+
+### Reflection
+AI significantly improved my productivity and understanding.  
+I carefully reviewed and customized all AI-generated code to ensure correctness and originality.
+
+---
+
+## 📊 Test Report
+
+- All test cases pass successfully
+- High coverage for core backend logic
+- Focused on real-world edge cases
+
+---
+
+## 👨‍💻 Author
+
+**Mayur Kadam**  
+Computer Engineering Graduate  
+Aspiring Full Stack Developer
+
