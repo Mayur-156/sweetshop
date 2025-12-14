@@ -18,44 +18,62 @@ export default function Register() {
 
     if (res._id || res.user) {
       alert("Registration successful. Please login.");
-      window.location.href = "/login"; // ✅ FIX
+      window.location.href = "/login";
     }
   };
 
   return (
+    /* ✅ FULL SCREEN CENTER WRAPPER */
     <div
       style={{
-        maxWidth: "320px",
-        margin: "80px auto",
-        padding: "20px",
-        borderRadius: "10px",
-        background: "#1e1e1e",
-        color: "#fff",
-        border: "1px solid #444",
+        position: "fixed",
+        inset: 0,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
       }}
     >
-      <h2>Register</h2>
+      {/* ✅ REGISTER CARD (STYLE SAME AS BEFORE) */}
+      <div
+        style={{
+          maxWidth: "320px",
+          padding: "20px",
+          borderRadius: "10px",
+          background: "#1e1e1e",
+          color: "#fff",
+          border: "1px solid #444",
+          textAlign: "center",
+        }}
+      >
+        <h2>Register</h2>
 
-      <form onSubmit={handleRegister}>
-        <input placeholder="Name" onChange={(e) => setName(e.target.value)} />
-        <br /><br />
+        <form onSubmit={handleRegister}>
+          <input
+            placeholder="Name"
+            onChange={(e) => setName(e.target.value)}
+          />
+          <br /><br />
 
-        <input placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
-        <br /><br />
+          <input
+            placeholder="Email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <br /><br />
 
-        <input
-          type="password"
-          placeholder="Password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <br /><br />
+          <input
+            type="password"
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <br /><br />
 
-        <button type="submit">Register</button>
-      </form>
+          <button type="submit">Register</button>
+        </form>
 
-      <p>
-        Already have an account? <Link to="/login">Login</Link>
-      </p>
+        <p>
+          Already have an account? <Link to="/login">Login</Link>
+        </p>
+      </div>
     </div>
   );
 }

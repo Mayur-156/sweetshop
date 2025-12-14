@@ -5,23 +5,23 @@ import {
   addSweet,
   deleteSweet,
   searchSweets,
-  restockSweet, // ✅ NEW
+  restockSweet,
 } from "../services/api";
 
 export default function Home() {
   const [sweets, setSweets] = useState([]);
 
-  // 🔍 SEARCH STATE
+  // SEARCH
   const [searchName, setSearchName] = useState("");
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
 
-  // 👑 ADMIN ADD
+  // ADMIN ADD
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
 
-  // 👑 ADMIN RESTOCK
+  // RESTOCK
   const [restockQty, setRestockQty] = useState({});
 
   const role = localStorage.getItem("role");
@@ -35,7 +35,6 @@ export default function Home() {
     loadSweets();
   }, []);
 
-  // 🔍 SEARCH
   const handleSearch = async () => {
     const data = await searchSweets({
       name: searchName,
@@ -52,14 +51,12 @@ export default function Home() {
     loadSweets();
   };
 
-  // 🛒 BUY
   const handleBuy = async (sweetId) => {
     const res = await buySweet({ sweetId, quantity: 1 });
     if (res?.message) alert(res.message);
     loadSweets();
   };
 
-  // 👑 ADD SWEET
   const handleAddSweet = async () => {
     if (!name || !price || !quantity) {
       alert("All fields required");
@@ -73,13 +70,11 @@ export default function Home() {
     loadSweets();
   };
 
-  // 👑 DELETE
   const handleDelete = async (id) => {
     await deleteSweet(id);
     loadSweets();
   };
 
-  // 👑 RESTOCK
   const handleRestock = async (id) => {
     const qty = restockQty[id];
     if (!qty || qty <= 0) {
@@ -93,61 +88,181 @@ export default function Home() {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2 style={{ textAlign: "center" }}>🍬 Sweet Shop</h2>
+    <div
+      style={{
+        minHeight: "100vh",
+        width: "100vw",
+        background: "linear-gradient(135deg, #020617, #0f172a)",
+        padding: "30px",
+        boxSizing: "border-box",
+      }}
+    >
+      {/* TITLE */}
+      <h1
+        style={{
+          textAlign: "center",
+          color: "#facc15",
+          marginBottom: "25px",
+          fontSize: "40px",
+        }}
+      >
+        🍬 Sweet Shop
+      </h1>
 
-      {/* 🔍 SEARCH BAR */}
-      <div style={{ display: "flex", gap: "10px", justifyContent: "center", marginBottom: "20px", flexWrap: "wrap" }}>
-        <input placeholder="Search by name" value={searchName} onChange={(e) => setSearchName(e.target.value)} />
-        <input type="number" placeholder="Min Price" value={minPrice} onChange={(e) => setMinPrice(e.target.value)} />
-        <input type="number" placeholder="Max Price" value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} />
+      {/* SEARCH BAR */}
+      <div
+        style={{
+          display: "flex",
+          gap: "12px",
+          justifyContent: "center",
+          flexWrap: "wrap",
+        }}
+      >
+        <input
+          placeholder="Search sweet"
+          value={searchName}
+          onChange={(e) => setSearchName(e.target.value)}
+        />
+        <input
+          type="number"
+          placeholder="Min ₹"
+          value={minPrice}
+          onChange={(e) => setMinPrice(e.target.value)}
+        />
+        <input
+          type="number"
+          placeholder="Max ₹"
+          value={maxPrice}
+          onChange={(e) => setMaxPrice(e.target.value)}
+        />
         <button onClick={handleSearch}>Search</button>
         <button onClick={handleReset}>Reset</button>
       </div>
 
-      {/* 👑 ADMIN ADD PANEL */}
+      {/* ADMIN PANEL */}
       {role === "admin" && (
-        <div style={{ border: "2px solid gold", padding: "15px", margin: "20px auto", maxWidth: "500px", borderRadius: "10px" }}>
-          <h3>👑 Admin Panel</h3>
+        <div
+          style={{
+            margin: "35px auto",
+            maxWidth: "600px",
+            padding: "25px",
+            borderRadius: "14px",
+            background: "#020617",
+            border: "1px solid #facc15",
+            textAlign: "center",
+            boxShadow: "0 10px 30px rgba(0,0,0,0.5)",
+          }}
+        >
+          <h3 style={{ color: "#facc15", marginBottom: "15px" }}>
+            👑 Admin Panel
+          </h3>
 
-          <input placeholder="Sweet Name" value={name} onChange={(e) => setName(e.target.value)} />
-          <input placeholder="Price" value={price} onChange={(e) => setPrice(e.target.value)} />
-          <input placeholder="Quantity" value={quantity} onChange={(e) => setQuantity(e.target.value)} />
+          <input
+            placeholder="Sweet Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <input
+            placeholder="Price"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+          />
+          <input
+            placeholder="Quantity"
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
+          />
 
-          <button onClick={handleAddSweet}>Add Sweet</button>
+          <button onClick={handleAddSweet} style={{ marginTop: "10px" }}>
+            Add Sweet
+          </button>
         </div>
       )}
 
-      {/* 🍬 SWEETS GRID */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "20px", maxWidth: "1000px", margin: "auto" }}>
+      {/* SWEET CARDS */}
+      <div
+        style={{
+          marginTop: "40px",
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
+          gap: "26px",
+          width: "100%",
+        }}
+      >
         {sweets.map((s) => (
-          <div key={s._id} style={{ border: "1px solid #444", borderRadius: "10px", padding: "15px", background: "#1e1e1e", color: "#fff" }}>
-            <h3>{s.name}</h3>
-            <p>Category: {s.category}</p>
-            <p>Price: ₹{s.price}</p>
-            <p>Available: {s.quantity}</p>
+          <div
+            key={s._id}
+            style={{
+              background: "#020617",
+              borderRadius: "18px",
+              padding: "20px",
+              color: "#e5e7eb",
+              boxShadow: "0 15px 40px rgba(0,0,0,0.45)",
+              transition: "transform 0.2s",
+            }}
+          >
+            <h3 style={{ color: "#facc15", marginBottom: "8px" }}>
+              {s.name}
+            </h3>
 
-            <button disabled={s.quantity === 0} onClick={() => handleBuy(s._id)}>
+            <p>💰 Price: ₹{s.price}</p>
+            <p>
+              📦 Stock:{" "}
+              <span style={{ color: s.quantity === 0 ? "red" : "#22c55e" }}>
+                {s.quantity}
+              </span>
+            </p>
+
+            <button
+              style={{
+                width: "100%",
+                marginTop: "12px",
+                background: "#22c55e",
+                color: "#020617",
+                fontWeight: "bold",
+              }}
+              disabled={s.quantity === 0}
+              onClick={() => handleBuy(s._id)}
+            >
               Buy
             </button>
 
-            {/* 👑 ADMIN ACTIONS */}
             {role === "admin" && (
               <>
-                <button style={{ marginLeft: "10px", background: "red", color: "white" }} onClick={() => handleDelete(s._id)}>
+                <button
+                  style={{
+                    width: "100%",
+                    marginTop: "8px",
+                    background: "#ef4444",
+                    color: "#fff",
+                  }}
+                  onClick={() => handleDelete(s._id)}
+                >
                   Delete
                 </button>
 
-                <div style={{ marginTop: "10px" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "6px",
+                    marginTop: "8px",
+                  }}
+                >
                   <input
                     type="number"
-                    placeholder="Restock qty"
+                    placeholder="Qty"
                     value={restockQty[s._id] || ""}
                     onChange={(e) =>
-                      setRestockQty({ ...restockQty, [s._id]: e.target.value })
+                      setRestockQty({
+                        ...restockQty,
+                        [s._id]: e.target.value,
+                      })
                     }
+                    style={{ flex: 1 }}
                   />
-                  <button onClick={() => handleRestock(s._id)}>Restock</button>
+                  <button onClick={() => handleRestock(s._id)}>
+                    +
+                  </button>
                 </div>
               </>
             )}
