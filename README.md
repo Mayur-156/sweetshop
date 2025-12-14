@@ -143,6 +143,8 @@ http://localhost:5173
 
 ## 📸 Screenshots
 
+## 📸 Screenshots
+
 ### 🔐 Login Page
 ![Login Page](./screenshots/login.png)
 
@@ -156,7 +158,7 @@ http://localhost:5173
 ![Admin Panel](./screenshots/Admin.png)
 
 ### ➕ Add Sweet (Admin)
-![Add Sweet Admin](./screenshots/add-sweet-(Admin).png)
+![Add Sweet Admin](./screenshots/add-sweet-admin.png)
 
 ### 🔍 Search (User)
 ![Search User](./screenshots/search-user.png)
