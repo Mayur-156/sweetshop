@@ -183,6 +183,7 @@ http://localhost:5173
 
 ### AI Tools Used
 - ChatGPT
+- Gemini 
 
 ### How I Used AI
 - Generating boilerplate code for APIs
@@ -190,6 +191,7 @@ http://localhost:5173
 - Debugging errors
 - Improving UI structure and layout
 - Understanding best practices
+- learn jest test how test case apply
 
 ### Reflection
 AI significantly improved my productivity and understanding.  
